@@ -1,0 +1,46 @@
+<ion-content class="center">
+<ion-grid >
+  <ion-row>
+    <ion-col size="4" class="bg-white">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+           {{loginpage?"Login":"Sign-Up"}}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <form (ngSubmit)="Submit(signupForm)" #signupForm="ngForm">
+            <div class="input-field">
+              <input 
+              placeholder="Email" 
+              id="email"
+              name="email"
+              type="text" 
+              class="validate"
+              ngModel
+              email
+              required>
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <input 
+              placeholder="Password" 
+              id="password" 
+              name="password"
+              type="password" 
+              class="validate"
+              minlength="6"
+              ngModel
+              required
+              >
+              <label for="password">Password</label>
+            </div>
+            <button class="btn btn-waves waves-effect" type="submit" [disabled]="signupForm.invalid">{{loginpage?"Login":"Sign-Up"}}</button>
+            <button class="btn btn-waves waves-effect" type="button" (click)="Invert()">Switch To {{loginpage?"Sign-Up":"Login"}}</button>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
