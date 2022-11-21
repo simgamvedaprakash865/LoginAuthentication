@@ -9,7 +9,8 @@
           </ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <form (ngSubmit)="Submit(signupForm)" #signupForm="ngForm">
+          <div *ngIf="isLoading" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          <form  *ngIf="!isLoading" (ngSubmit)="Submit(signupForm)" #signupForm="ngForm">
             <div class="input-field">
               <input 
               placeholder="Email" 
@@ -38,6 +39,9 @@
             <button class="btn btn-waves waves-effect" type="submit" [disabled]="signupForm.invalid">{{loginpage?"Login":"Sign-Up"}}</button>
             <button class="btn btn-waves waves-effect" type="button" (click)="Invert()">Switch To {{loginpage?"Sign-Up":"Login"}}</button>
           </form>
+          <div class="red lighten-4">
+            <h6>{{errorMessage}}</h6>
+          </div>
         </ion-card-content>
       </ion-card>
     </ion-col>
