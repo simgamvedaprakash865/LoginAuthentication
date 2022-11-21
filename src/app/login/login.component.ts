@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService, User } from './authentication.service';
-import { catchError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import {Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +9,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-   constructor( private authAPI:AuthenticationService) { }
+   constructor( 
+     private authAPI:AuthenticationService,
+      private router:Router
+     ) { }
  // @ViewChild('signupForm') public signup: any;
   loggedInUser:any;
   loginpage=false;
@@ -40,9 +42,11 @@ export class LoginComponent implements OnInit {
     
     this.loggedInUser.subscribe((data:any)=>{
       console.log(data);
+      this.router.navigate(['/home']);
+      this.isLoading=false;
     },(error:any)=>{
       this.errorMessage="An Error Occured";
+      this.isLoading=false;
     });
-    this.isLoading=false;
   }
 }
