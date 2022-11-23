@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     if(this.loginpage)
     {
      this.loggedInUser= this.authAPI.login(form.value.email,form.value.password);
+    // this.authAPI.add("Veda Prakash RGUKT");
       this.Subscribing();
       form.reset();
     }
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
     
     this.loggedInUser.subscribe((data:any)=>{
       console.log(data);
+      localStorage.setItem("UserDetails",JSON.stringify(data));
       this.router.navigate(['/home']);
       this.isLoading=false;
     },(error:any)=>{
